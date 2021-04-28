@@ -1,0 +1,9 @@
+{
+    "LINKS": {},
+    "STORAGE_SERVICES": {
+        "TRANSLATION": "TRANSLATION",
+        "LOCALIZATION": "LOCALIZATION",
+        "THEME": "THEME",
+        "ALL_THEMES": "ALL_THEMES"
+    }
+}

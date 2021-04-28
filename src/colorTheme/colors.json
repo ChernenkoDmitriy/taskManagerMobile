@@ -1,0 +1,12 @@
+{
+    "light": {
+        "background": "#E5E5E5",
+        "card": "#F9F9F9",
+        "buttonText": "#FFFFFF",
+        "regularText": "#434343",
+        "tittleText": "#000000",
+        "inactiveText": "#979797",
+        "accentColorLight": "#3C7BEA",
+        "accentColorDark": "#0F264B"
+    }
+}
