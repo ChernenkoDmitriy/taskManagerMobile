@@ -1,5 +1,5 @@
 export type IPresenters =
-    'chooseGamePresenter' |
+    'createTaskPresenter' |
     'mainPagePresenter' |
     'launchAppPresenter' |
     'basePresenter';

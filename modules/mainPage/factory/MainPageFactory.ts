@@ -1,3 +1,5 @@
+import { INote } from "../../common/models/INote";
+import { MobXRepository } from "../../common/repository/MobXRepository";
 import { IMainPagePresenter } from "../presenter/IMainPagePresenter";
 import { MainPageController } from "../presenter/MainPageController";
 import { MainPageState } from "../presenter/MainPageState";
@@ -15,16 +17,14 @@ export class MainPageFactory {
     }
 
     private createPresenter = () => {
-        const mainPageState = new MainPageState( );
+        const notesStore = new MobXRepository<INote[]>();
 
-        const loadQuestsUseCase = new LoadQuestsUseCase(  );
+        const loadQuestsUseCase = new LoadQuestsUseCase();
 
-
-        const mainPageController = new MainPageController(mainPageState, loadQuestsUseCase, );
-    
-        return { mainPageController, mainPageState };
+        const state = new MainPageState(notesStore);
+        const controller = new MainPageController(state, loadQuestsUseCase,);
+        return { controller, state, notesStore };
     }
 
 }
 
-    

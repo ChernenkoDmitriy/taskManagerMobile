@@ -4,8 +4,8 @@ import { IStackNavigation } from '../../../src/navigation/INavigation/IStackNavi
 import { getStyle } from './styles';
 import { IColors } from '../../../src/colorTheme';
 import { IMainPagePresenter } from '../presenter/IMainPagePresenter';
-import { MainButton } from '../../common/ui/mainButton';
-import { HeaderMainPage } from './headerMainPage';
+import { MyNotes } from './myNotes';
+import { ButtonCreateTask } from './buttonCreateTask';
 
 interface Props {
     navigation: IStackNavigation;
@@ -14,17 +14,13 @@ interface Props {
     mainPagePresenter: IMainPagePresenter;
 }
 
-export const MainPageView: FC<Props> = ({ navigation, colors, t, mainPagePresenter }) => {
+export const MainPageView: FC<Props> = ({ navigation, colors, t, mainPagePresenter: { state } }) => {
     const styles = useMemo(() => getStyle(colors), [colors]);
 
     return (
         <View style={styles.container}>
-            <HeaderMainPage colors={colors} navigation={navigation} />
-            <View style={styles.buttonWrapper}>
-                <MainButton title={t('play')} testID='Play' onPress={() => { navigation.navigate('ChooseGameScreen') }} colors={colors} />
-                <MainButton title={t('continue')} testID='Continue' onPress={() => { }} colors={colors} />
-                <MainButton title={t('exit')} testID='Exit' onPress={() => { }} colors={colors} />
-            </View>
+            <MyNotes t={t} colors={colors} notes={state.notes} />
+            <ButtonCreateTask colors={colors} onPress={() => { navigation.navigate('CreateTaskScreen') }} />
         </View>
     )
 }

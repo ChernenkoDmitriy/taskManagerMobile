@@ -1,6 +1,7 @@
 import { IStorage } from "../../../libs/storage";
 import { IColors } from "../../../src/colorTheme";
-import { IStoreServices } from "../../../src/config";
+import { IStorageServices } from "../../../src/config";
+import { INote } from "../../common/models/INote";
 
 export interface IReadTheme {
     readTheme: () => Promise<string | null>;
@@ -12,9 +13,13 @@ export interface IReadLocale {
     readTranslation: () => Promise<object | null>;
 }
 
-export class LaunchAppStorage implements IReadLocale, IReadTheme {
+export interface IReadNotesTasksRooms {
+    readNotesTasksTeams: () => Promise<{ notes: INote[] | null, tasks: null, rooms: null }>;
+}
+
+export class LaunchAppStorage implements IReadLocale, IReadTheme, IReadNotesTasksRooms {
     constructor(
-        private services: IStoreServices,
+        private services: IStorageServices,
         private storage: IStorage,
     ) { }
 
@@ -36,6 +41,13 @@ export class LaunchAppStorage implements IReadLocale, IReadTheme {
     readAllTheme = async () => {
         const data = await this.storage.get(this.services.ALL_THEMES);
         return data;
+    }
+
+    readNotesTasksTeams = async () => {
+        const tasks = null;
+        const rooms = null;
+        const notes = await this.storage.get(this.services.NOTES);
+        return { notes, tasks, rooms };
     }
 
 }

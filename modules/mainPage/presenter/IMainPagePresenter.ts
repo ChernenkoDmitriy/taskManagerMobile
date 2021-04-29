@@ -1,6 +1,9 @@
+import { INote } from "../../common/models/INote";
 import { IMainPageController } from "./MainPageController";
 
 export interface IMainPagePresenter {
-    mainPageController: IMainPageController;
-    mainPageState: {   };
+    controller: IMainPageController;
+    state: {
+        readonly notes: INote[];
+    };
 }

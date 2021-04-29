@@ -23,6 +23,25 @@ export class Util implements IUtil {
         Util.instance = this;
     }
 
+    static get text() {
+        return {
+            small: {
+
+            },
+            medium: {
+                fontSize: 18,
+                lineHeight: 22,
+                fontFamily: 'Roboto-Light'
+            },
+            large: {
+                fontSize: 20,
+                lineHeight: 24,
+                fontFamily: 'Roboto-Light'
+            },
+
+        }
+    }
+
     static get isIOS() {
         return Util._isIOS;
     }
@@ -34,12 +53,12 @@ export class Util implements IUtil {
     getVersion = () => {
         const version = DeviceInfo.getVersion();
         return version;
-    };
+    }
 
     getBuild = () => {
         const build = DeviceInfo.getBuildNumber();
         return build;
-    };
+    }
 
     getInitialWindowMetrics = () => {
         if (this.initialWindow) {
@@ -51,6 +70,6 @@ export class Util implements IUtil {
             const { width, height } = Dimensions.get('window');
             return { frame: { height, width, x: 0, y: 0 }, insets: { bottom: 0, left: 0, right: 0, top: 0 } };
         }
-    };
+    }
 
 }

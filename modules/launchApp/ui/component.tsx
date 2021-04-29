@@ -16,7 +16,7 @@ export const LaunchAppView: FC<Props> = ({ launchAppPresenter: { launchAppContro
 
     return (
         <View style={styles.container}>
-            <Animated.Text style={[styles.textLogo, {opacity:launchAppState.opacityLogo}]}>IQ QUEST</Animated.Text>
+            <Animated.Text style={[styles.textLogo, {opacity:launchAppState.opacityLogo}]}>TASK MANAGER</Animated.Text>
         </View>
     );
 }

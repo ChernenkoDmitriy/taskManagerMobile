@@ -1,4 +1,5 @@
 export type IColors = {
+    shadow: string;
     background: string;
     card: string;
     buttonText: string;

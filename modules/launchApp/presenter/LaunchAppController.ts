@@ -1,5 +1,6 @@
 import { Easing, timing } from "react-native-reanimated";
 import { IReadLocalizationUseCase } from "../useCases/ReadLocalizationUseCase";
+import { IReadNotesUseCase } from "../useCases/ReadNotesUseCase";
 import { IReadThemeUseCase } from "../useCases/ReadThemeUseCase";
 import { ILaunchAppState } from "./LaunchAppState";
 
@@ -11,7 +12,8 @@ export class LaunchAppController implements ILaunchAppController {
     constructor(
         private launchAppState: ILaunchAppState,
         private readLocalizationUseCase: IReadLocalizationUseCase,
-        private readThemeUseCase: IReadThemeUseCase
+        private readThemeUseCase: IReadThemeUseCase,
+        private readNotesUseCase: IReadNotesUseCase
     ) { }
 
     launchAppData = async () => {
@@ -19,6 +21,7 @@ export class LaunchAppController implements ILaunchAppController {
             this.animatedOpacity();
             await this.readLocalizationUseCase.read();
             await this.readThemeUseCase.read();
+            await this.readNotesUseCase.read();
             this.launchAppState.setIsAppLoaded(true);
         } catch (error) {
             console.warn('LaunchAppController -> launchAppState: ', error);
@@ -26,7 +29,7 @@ export class LaunchAppController implements ILaunchAppController {
     }
 
     private animatedOpacity = () => {
-        timing(this.launchAppState.opacityLogo, { toValue: 2, duration: 1800, easing: Easing.linear })
+        timing(this.launchAppState.opacityLogo, { toValue: 2, duration: 700, easing: Easing.linear })
             .start(({ finished }) => {
                 if (finished) {
                     this.launchAppState.setIsAnimationFinished(true);

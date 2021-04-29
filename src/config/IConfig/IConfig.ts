@@ -1,8 +1,8 @@
 import { ILinks } from "./ILinks";
-import { IStoreServices } from "./IStoreServices";
+import { IStorageServices } from "./IStorageServices";
 
 export interface IConfig {
     LINKS: ILinks;
-    STORAGE_SERVICES: IStoreServices;
+    STORAGE_SERVICES: IStorageServices;
     setLinks: (links: ILinks) => void;
 }

@@ -1,9 +1,13 @@
 {
-    "ru": {},
+    "ru": {
+        "title": "Заголовок",
+        "myNotes": "Мои заметки",
+        "note": "Заметка"
+    },
     "ua": {},
     "en": {
-        "play": "Play",
-        "continue": "Continue",
-        "exit": "Exit"
+        "title": "Title",
+        "myNotes": "My notes",
+        "note": "Note"
     }
 }

@@ -3,11 +3,13 @@ import { AsyncStoreStorage } from "../../../libs/storage";
 import { BaseFactory } from "../../../src/baseFactory/BaseFactory";
 import { Config } from "../../../src/config";
 import { MobXRepository } from "../../common/repository/MobXRepository";
+import { MainPageFactory } from "../../mainPage/factory/MainPageFactory";
 import { LaunchAppStorage } from "../api/Storage";
 import { ILaunchAppPresenter } from "../presenter/ILaunchAppPresenter";
 import { LaunchAppController } from "../presenter/LaunchAppController";
 import { LaunchAppState } from "../presenter/LaunchAppState";
 import { ReadLocalizationUseCase } from "../useCases/ReadLocalizationUseCase";
+import { ReadNotesUseCase } from "../useCases/ReadNotesUseCase";
 import { ReadThemeUseCase } from "../useCases/ReadThemeUseCase";
 
 export class LaunchAppFactory {
@@ -21,6 +23,8 @@ export class LaunchAppFactory {
     }
 
     private createPresenter = () => {
+        // @ts-ignore
+        const { notesStore } = MainPageFactory.get();
         const { isAppLoadedStore, colorTheme, localization } = BaseFactory.get();
         const isAnimationFinishedStore = new MobXRepository<boolean>();
         const isStartDataReadStore = new MobXRepository<boolean>();
@@ -32,8 +36,9 @@ export class LaunchAppFactory {
         const launchAppState = new LaunchAppState(isAppLoadedStore, isAnimationFinishedStore, isStartDataReadStore, animatedOpacity);
         const readLocalizationUseCase = new ReadLocalizationUseCase(storage, localization);
         const readThemeUseCase = new ReadThemeUseCase(storage, colorTheme);
+        const readNotesUseCase = new ReadNotesUseCase(storage, notesStore);
 
-        const launchAppController = new LaunchAppController(launchAppState, readLocalizationUseCase, readThemeUseCase);
+        const launchAppController = new LaunchAppController(launchAppState, readLocalizationUseCase, readThemeUseCase, readNotesUseCase);
 
         return { launchAppController, launchAppState };
     }

@@ -1,4 +1,4 @@
-import { ChooseGameFactory } from "../../modules/chooseGame/factory/ChooseGameFactory";
+import { CreateTaskFactory } from "../../modules/createTask/factory/CreateTaskFactory";
 import { LaunchAppFactory } from "../../modules/launchApp/factory/LaunchAppFactory";
 import { MainPageFactory } from "../../modules/mainPage/factory/MainPageFactory";
 import { BaseFactory } from "../baseFactory/BaseFactory";
@@ -8,8 +8,8 @@ export class Factory {
 
     static get = (type: IPresenters, ..._args: any) => {
         switch (type) {
-            case 'chooseGamePresenter':
-                return ChooseGameFactory.get();
+            case 'createTaskPresenter':
+                return CreateTaskFactory.get();
             case 'mainPagePresenter':
                 return MainPageFactory.get();
             case 'launchAppPresenter':
