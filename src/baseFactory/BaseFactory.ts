@@ -2,9 +2,13 @@ import { IRepository } from "../../modules/common/repository/IRepository";
 import { MobXRepository } from "../../modules/common/repository/MobXRepository";
 import { ILocalization } from "../localization/ILocalization";
 import { Localization } from "../localization/Localization";
-import { IColorTheme, IThemeStore, ThemeMobXStore, ColorTheme } from "../colorTheme";
+import { IColorTheme, ThemeMobXStore, ColorTheme } from "../colorTheme";
+import { INote } from "../../modules/common/models/INote";
 
 export interface IBaseFactoryPresenter {
+    chosenNoteStore: IRepository<INote>;
+    notesStore: IRepository<INote[]>;
+
     isAppLoadedStore: IRepository<boolean>;
     colorTheme: IColorTheme;
     localization: ILocalization;
@@ -21,14 +25,20 @@ export class BaseFactory {
     }
 
     private createBasePresenter = (): IBaseFactoryPresenter => {
+        // global biasness storages
+        const chosenNoteStore = new MobXRepository<INote>();
+        const notesStore = new MobXRepository<INote[]>();
+
         const isAppLoadedStore: IRepository<boolean> = new MobXRepository<boolean>();
 
-        const colorThemeStore: IThemeStore = new ThemeMobXStore();
-        const colorTheme: IColorTheme = new ColorTheme(colorThemeStore);
-        const localizationStore: IRepository<string> = new MobXRepository<string>();
-        const localization: ILocalization = new Localization(localizationStore);
+        const colorThemeStore = new ThemeMobXStore();
+        const colorTheme = new ColorTheme(colorThemeStore);
+        const localizationStore = new MobXRepository<string>();
+        const localization = new Localization(localizationStore);
 
         return {
+            chosenNoteStore,
+            notesStore,
             isAppLoadedStore,
             colorTheme,
             localization

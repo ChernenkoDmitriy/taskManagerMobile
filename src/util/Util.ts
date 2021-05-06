@@ -34,8 +34,8 @@ export class Util implements IUtil {
                 fontFamily: 'Roboto-Light'
             },
             large: {
-                fontSize: 20,
-                lineHeight: 24,
+                fontSize: 22,
+                lineHeight: 26,
                 fontFamily: 'Roboto-Light'
             },
 

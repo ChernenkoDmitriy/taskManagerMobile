@@ -1,11 +1,13 @@
 {
     "ru": {
+        "createNote": "Создать заметку",
         "title": "Заголовок",
         "myNotes": "Мои заметки",
         "note": "Заметка"
     },
     "ua": {},
     "en": {
+        "createNote": "Create note",
         "title": "Title",
         "myNotes": "My notes",
         "note": "Note"

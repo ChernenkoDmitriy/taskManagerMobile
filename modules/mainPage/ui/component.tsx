@@ -14,13 +14,13 @@ interface Props {
     mainPagePresenter: IMainPagePresenter;
 }
 
-export const MainPageView: FC<Props> = ({ navigation, colors, t, mainPagePresenter: { state } }) => {
+export const MainPageView: FC<Props> = ({ navigation, colors, t, mainPagePresenter: { state, controller } }) => {
     const styles = useMemo(() => getStyle(colors), [colors]);
 
     return (
         <View style={styles.container}>
-            <MyNotes t={t} colors={colors} notes={state.notes} />
-            <ButtonCreateTask colors={colors} onPress={() => { navigation.navigate('CreateTaskScreen') }} />
+            <MyNotes t={t} colors={colors} notes={state.notes} navigation={navigation} onChoseNote={controller.onChoseNote}/>
+            <ButtonCreateTask colors={colors} onPress={() => { navigation.navigate('CreateNoteScreen') }} />
         </View>
     )
 }

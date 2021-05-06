@@ -4,7 +4,8 @@ import { observer } from 'mobx-react';
 import { BaseFactory } from '../baseFactory/BaseFactory';
 import { LaunchAppScreen } from '../../modules/launchApp/ui';
 import { MainPageScreen } from '../../modules/mainPage/ui';
-import { CreateTaskScreen } from '../../modules/createTask/ui';
+import { CreateNoteScreen } from '../../modules/createNote/ui';
+import { NoteDetailScreen } from '../../modules/noteDetail/ui';
 
 const Stack = createStackNavigator();
 
@@ -17,7 +18,8 @@ export const StackNavigator: FC = observer(() => {
                 ?
                 <>
                     <Stack.Screen name='MainPageScreen' component={MainPageScreen} options={{ headerShown: false }} />
-                    <Stack.Screen name='CreateTaskScreen' component={CreateTaskScreen} options={{ headerShown: false }} />
+                    <Stack.Screen name='CreateNoteScreen' component={CreateNoteScreen} options={{ headerShown: false }} />
+                    <Stack.Screen name='NoteDetailScreen' component={NoteDetailScreen} options={{ headerShown: false }} />
                 </>
                 :
                 <Stack.Screen name='LaunchAppScreen' component={LaunchAppScreen} options={{ headerShown: false }} />

@@ -1,5 +1,4 @@
-import { INote } from "../../common/models/INote";
-import { MobXRepository } from "../../common/repository/MobXRepository";
+import { BaseFactory } from "../../../src/baseFactory/BaseFactory";
 import { IMainPagePresenter } from "../presenter/IMainPagePresenter";
 import { MainPageController } from "../presenter/MainPageController";
 import { MainPageState } from "../presenter/MainPageState";
@@ -17,11 +16,11 @@ export class MainPageFactory {
     }
 
     private createPresenter = () => {
-        const notesStore = new MobXRepository<INote[]>();
+        const { chosenNoteStore, notesStore } = BaseFactory.get();
 
         const loadQuestsUseCase = new LoadQuestsUseCase();
 
-        const state = new MainPageState(notesStore);
+        const state = new MainPageState(notesStore, chosenNoteStore);
         const controller = new MainPageController(state, loadQuestsUseCase,);
         return { controller, state, notesStore };
     }
