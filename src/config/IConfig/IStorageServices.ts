@@ -1,7 +1,10 @@
 export interface IStorageServices {
-    LOCALIZATION: string;
-    TRANSLATION: string;
-    THEME: string;
-    ALL_THEMES: string;
-    NOTES: string;
+    STORAGE_SERVICES: {
+        LOCALIZATION: string;
+        TRANSLATION: string;
+        THEME: string;
+        ALL_THEMES: string;
+        NOTES: string;
+        USER: string;
+    }
 }

@@ -1,6 +1,10 @@
 export type IPresenters =
-    'noteDetailPresenter' |
-    'createNotePresenter' |
+    'smartTaskPresenter' |
+    'registrationPresenter' |
+    'authorizationPresenter' |
+    'changeLanguagePresenter' |
+    'profilePresenter' |
+    'notePresenter' |
     'mainPagePresenter' |
     'launchAppPresenter' |
     'basePresenter';

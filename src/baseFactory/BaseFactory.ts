@@ -4,11 +4,12 @@ import { ILocalization } from "../localization/ILocalization";
 import { Localization } from "../localization/Localization";
 import { IColorTheme, ThemeMobXStore, ColorTheme } from "../colorTheme";
 import { INote } from "../../modules/common/models/INote";
+import { IUser } from "../../modules/common/models/IUser";
 
 export interface IBaseFactoryPresenter {
     chosenNoteStore: IRepository<INote>;
     notesStore: IRepository<INote[]>;
-
+    userStore: IRepository<IUser>;
     isAppLoadedStore: IRepository<boolean>;
     colorTheme: IColorTheme;
     localization: ILocalization;
@@ -28,6 +29,7 @@ export class BaseFactory {
         // global biasness storages
         const chosenNoteStore = new MobXRepository<INote>();
         const notesStore = new MobXRepository<INote[]>();
+        const userStore = new MobXRepository<IUser>();
 
         const isAppLoadedStore: IRepository<boolean> = new MobXRepository<boolean>();
 
@@ -39,6 +41,7 @@ export class BaseFactory {
         return {
             chosenNoteStore,
             notesStore,
+            userStore,
             isAppLoadedStore,
             colorTheme,
             localization

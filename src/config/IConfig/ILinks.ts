@@ -1,1 +1,6 @@
-export interface ILinks { }
+export interface ILinks {
+    LINKS: {
+        AUTHORIZATION: string;
+        REGISTRATION: string;
+    }
+}

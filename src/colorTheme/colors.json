@@ -1,11 +1,15 @@
 {
     "light": {
-        "shadow":"#bababa",
+        "error":"#FF5010",
+        "low": "#2ECC71",
+        "medium": "#F7DC6F",
+        "high": "#E74C3C",
+        "shadow": "#bababa",
         "background": "#FFFFFF",
-        "card": "#F9F9F9",
+        "card": "#EAEDED",
         "buttonText": "#FFFFFF",
         "regularText": "#131313",
-        "tittleText": "#000000",
+        "titleText": "#000000",
         "inactiveText": "#979797",
         "accentColorLight": "#3C7BEA",
         "accentColorDark": "#0F264B"

@@ -7,11 +7,11 @@ import { Factory } from '../factory/Factory';
 
 class Connector implements IConnector {
 
-    connect = (Component: React.FC<any>, ...presenters: IPresenters[]): React.ComponentType => {
+    connect = (Component: React.FC<any>, ...presenters: IPresenters[]): React.ComponentType<any> => {
         const ObserverComponent: ComponentType<any> = observer(Component);
 
         return (ownProps: any): JSX.Element | null => {
-            const { colorTheme: { colors }, localization: { t } } = BaseFactory.get() ;
+            const { colorTheme: { colors }, localization: { t } } = BaseFactory.get();
             const props: any = { colors, t };
 
             if (Array.isArray(presenters)) {
