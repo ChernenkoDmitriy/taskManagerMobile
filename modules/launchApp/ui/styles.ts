@@ -12,7 +12,7 @@ export const getStyle = (colors: IColors) => {
         textLogo: {
             fontSize: 20,
             lineHeight: 24,
-            color: colors.tittleText,
+            color: colors.titleText,
         }
     });
     return styles;

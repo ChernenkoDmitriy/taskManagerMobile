@@ -10,12 +10,19 @@ export interface IMainPageState {
 export class MainPageState implements IMainPageState {
     constructor(
         private notesStore: IRepository<INote[]>,
-        private chosenNoteStore: IRepository<INote>
+        private chosenNoteStore: IRepository<INote>,
     ) { }
 
-    get notes() { return this.notesStore.data ?? []; }
-    setNotes = (data: INote[]) => { this.notesStore.save(data); }
+    get notes() {
+        return this.notesStore.data ?? [];
+    }
 
-    setChosenNote = (data: INote | null) => { this.chosenNoteStore.save(data); }
+    setNotes = (data: INote[]) => {
+        this.notesStore.save(data);
+    }
+
+    setChosenNote = (data: INote | null) => {
+        this.chosenNoteStore.save(data);
+    }
 
 }

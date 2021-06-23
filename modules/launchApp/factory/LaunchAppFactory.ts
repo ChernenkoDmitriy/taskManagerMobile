@@ -23,9 +23,7 @@ export class LaunchAppFactory {
     }
 
     private createPresenter = () => {
-        // @ts-ignore
-        const { notesStore } = MainPageFactory.get();
-        const { isAppLoadedStore, colorTheme, localization } = BaseFactory.get();
+        const { isAppLoadedStore, colorTheme, localization, notesStore } = BaseFactory.get();
         const isAnimationFinishedStore = new MobXRepository<boolean>();
         const isStartDataReadStore = new MobXRepository<boolean>();
         const animatedOpacity = new Animated.Value(0);

@@ -1,28 +1,22 @@
 import React, { FC, useMemo } from 'react';
-import { View, Pressable } from 'react-native';
-import { SettingsIcon } from '../../../../assets/icons/SettingsIcon';
+import { View, Text, Image } from 'react-native';
 import { IColors } from '../../../../src/colorTheme';
-import { IStackNavigation } from '../../../../src/navigation/INavigation/IStackNavigation';
 import { getStyle } from './styles';
 
 interface Props {
-    navigation: IStackNavigation;
+    t: (key: string) => string;
     colors: IColors;
 }
 
-export const HeaderMainPage: FC<Props> = ({ navigation, colors }) => {
+export const HeaderMainPage: FC<Props> = ({ colors, t }) => {
     const styles = useMemo(() => getStyle(colors), [colors]);
 
     return (
         <View style={styles.container}>
-            <Pressable
-                style={({ pressed }) => [styles.buttonSettings, { opacity: pressed ? 0.5 : 1 }]}
-                onPress={() => { }}
-                testID={`buttonSettings`}
-                accessibilityLabel={`buttonSettings`}
-            >
-                <SettingsIcon width={36} height={36} />
-            </Pressable>
+            <View style={styles.logoWrapper}>
+                <Image source={require('../../../../assets/img/logo.png')} style={styles.imageLogo} />
+                <Text style={styles.textTitle}>{t('appName')}</Text>
+            </View>
         </View>
     )
 }

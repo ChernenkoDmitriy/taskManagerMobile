@@ -4,8 +4,9 @@ import { IStackNavigation } from '../../../src/navigation/INavigation/IStackNavi
 import { getStyle } from './styles';
 import { IColors } from '../../../src/colorTheme';
 import { IMainPagePresenter } from '../presenter/IMainPagePresenter';
-import { MyNotes } from './myNotes';
+import { MyNotes } from '../../note/ui/noteList/myNotes';
 import { ButtonCreateTask } from './buttonCreateTask';
+import { HeaderMainPage } from './headerMainPage';
 
 interface Props {
     navigation: IStackNavigation;
@@ -19,8 +20,9 @@ export const MainPageView: FC<Props> = ({ navigation, colors, t, mainPagePresent
 
     return (
         <View style={styles.container}>
-            <MyNotes t={t} colors={colors} notes={state.notes} navigation={navigation} onChoseNote={controller.onChoseNote}/>
-            <ButtonCreateTask colors={colors} onPress={() => { navigation.navigate('CreateNoteScreen') }} />
+            <HeaderMainPage t={t} colors={colors} onOpenProfile={() => { navigation.navigate('ProfileScreen') }} />
+            <MyNotes t={t} title={t('myNotes')} colors={colors} notes={state.notes} navigation={navigation} onChoseNote={controller.onChoseNote} convertTimeToString={controller.convertTimeToString} />
+            <ButtonCreateTask colors={colors} onPress={() => { navigation.navigate('EditNoteScreen') }} />
         </View>
     )
 }

@@ -4,7 +4,6 @@ import { MainPageController } from "../presenter/MainPageController";
 import { MainPageState } from "../presenter/MainPageState";
 import { LoadQuestsUseCase } from "../useCases/LoadQuestsUseCase";
 
-
 export class MainPageFactory {
     private static presenter: IMainPagePresenter;
 
@@ -22,8 +21,7 @@ export class MainPageFactory {
 
         const state = new MainPageState(notesStore, chosenNoteStore);
         const controller = new MainPageController(state, loadQuestsUseCase,);
-        return { controller, state, notesStore };
+        return { controller, state };
     }
 
 }
-

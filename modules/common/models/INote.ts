@@ -4,7 +4,8 @@ export interface INote {
     points: NotePoint[];
     uid: string;
     status: 'done' | 'inProgress' | 'new';
-    priority: 'low' | 'medium' | 'high';
+    priority: Priority;
+    lastUpdate: number;
 }
 
 export type NotePoint = {
@@ -12,3 +13,5 @@ export type NotePoint = {
     isDone: boolean;
     uid: string;
 }
+
+export type Priority = 'low' | 'medium' | 'high';
