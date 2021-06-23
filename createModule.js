@@ -48,7 +48,7 @@ interface Props {
     ${MODULE_NAME}Presenter: I${MODULE_NAME_CLASS}Presenter;
 }
 
-export const ${MODULE_NAME_CLASS}View: FC<Props> = ({ navigation, colors, t, ${MODULE_NAME}Presenter }) => {
+export const ${MODULE_NAME_CLASS}View: FC<Props> = ({ navigation, colors, t, ${MODULE_NAME}Presenter:{state, controller} }) => {
     const styles = useMemo(() => getStyle(colors), [colors]);
 
     return (
@@ -82,7 +82,7 @@ export interface I${MODULE_NAME_CLASS}Controller {
 
 export class ${MODULE_NAME_CLASS}Controller implements I${MODULE_NAME_CLASS}Controller {
     constructor(
-        private ${MODULE_NAME}State: I${MODULE_NAME_CLASS}State,
+        private state: I${MODULE_NAME_CLASS}State,
         ${useCases}
     ) { }
 
@@ -92,8 +92,10 @@ export class ${MODULE_NAME_CLASS}Controller implements I${MODULE_NAME_CLASS}Cont
     const presenter = `import { I${MODULE_NAME_CLASS}Controller } from "./${MODULE_NAME_CLASS}Controller";
 
 export interface I${MODULE_NAME_CLASS}Presenter {
-    ${MODULE_NAME}Controller: I${MODULE_NAME_CLASS}Controller;
-    ${MODULE_NAME}State: {   };
+    controller: I${MODULE_NAME_CLASS}Controller;
+    state: {  
+
+    };
 }
 `;
 
@@ -160,7 +162,6 @@ async function createFactoryFiles() {
 import { ${MODULE_NAME_CLASS}Controller } from "../presenter/${MODULE_NAME_CLASS}Controller";
 import { ${MODULE_NAME_CLASS}State } from "../presenter/${MODULE_NAME_CLASS}State";
 ${imports}
-
 export class ${MODULE_NAME_CLASS}Factory {
     private static presenter: I${MODULE_NAME_CLASS}Presenter;
 
@@ -172,18 +173,15 @@ export class ${MODULE_NAME_CLASS}Factory {
     }
 
     private createPresenter = () => {
-        const ${MODULE_NAME}State = new ${MODULE_NAME_CLASS}State( );
-
         ${useCases}
-
-        const ${MODULE_NAME}Controller = new ${MODULE_NAME_CLASS}Controller(${MODULE_NAME}State, ${paramsForPresenter});
+        const state = new ${MODULE_NAME_CLASS}State( );
+        const controller = new ${MODULE_NAME_CLASS}Controller(state, ${paramsForPresenter});
     
-        return { ${MODULE_NAME}Controller, ${MODULE_NAME}State };
+        return { controller, state };
     }
 
 }
-
-    `;
+`;
     await fs.writeFile(PATH + MODULE_NAME + "/factory/" + MODULE_NAME_CLASS + "Factory.ts", factory, () => { });
 }
 
