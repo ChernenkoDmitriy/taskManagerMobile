@@ -20,5 +20,4 @@ export class UserPersistence implements IUserPersistence {
         }
     }
 
-
 }

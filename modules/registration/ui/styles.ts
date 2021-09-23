@@ -9,7 +9,7 @@ export const getStyle = (colors: IColors) => {
             backgroundColor: colors.background,
         },
         inputsContainer: {
-            height: 165,
+            minHeight: 165,
             width: '100%',
             justifyContent: 'space-between',
             alignItems: 'center',

@@ -3,13 +3,16 @@ import { MobXRepository } from "../../modules/common/repository/MobXRepository";
 import { ILocalization } from "../localization/ILocalization";
 import { Localization } from "../localization/Localization";
 import { IColorTheme, ThemeMobXStore, ColorTheme } from "../colorTheme";
-import { INote } from "../../modules/common/models/INote";
 import { IUser } from "../../modules/common/models/IUser";
+import { IRoom } from "../../modules/common/models/IRoom";
+import { ISmartTask } from "../../modules/common/models/ISmartTask";
 
 export interface IBaseFactoryPresenter {
-    chosenNoteStore: IRepository<INote>;
-    notesStore: IRepository<INote[]>;
     userStore: IRepository<IUser>;
+    userRoomsStore: IRepository<IRoom[]>;
+    chosenRoomStore: IRepository<IRoom>;
+    roomSmartTasksStore: IRepository<ISmartTask[]>;
+    chosenSmartTaskStore: IRepository<ISmartTask>;
     isAppLoadedStore: IRepository<boolean>;
     colorTheme: IColorTheme;
     localization: ILocalization;
@@ -27,9 +30,11 @@ export class BaseFactory {
 
     private createBasePresenter = (): IBaseFactoryPresenter => {
         // global biasness storages
-        const chosenNoteStore = new MobXRepository<INote>();
-        const notesStore = new MobXRepository<INote[]>();
         const userStore = new MobXRepository<IUser>();
+        const userRoomsStore = new MobXRepository<IRoom[]>();
+        const chosenRoomStore = new MobXRepository<IRoom>();
+        const roomSmartTasksStore = new MobXRepository<ISmartTask[]>();
+        const chosenSmartTaskStore = new MobXRepository<ISmartTask>();
 
         const isAppLoadedStore: IRepository<boolean> = new MobXRepository<boolean>();
 
@@ -39,9 +44,11 @@ export class BaseFactory {
         const localization = new Localization(localizationStore);
 
         return {
-            chosenNoteStore,
-            notesStore,
             userStore,
+            userRoomsStore,
+            chosenRoomStore,
+            roomSmartTasksStore,
+            chosenSmartTaskStore,
             isAppLoadedStore,
             colorTheme,
             localization

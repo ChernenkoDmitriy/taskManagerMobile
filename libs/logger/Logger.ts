@@ -1,4 +1,4 @@
-import { ILogRequestError } from "./ILogger/LogRequestError";
+import { ILogRequestError } from "./ILogger/ILogRequestError";
 
 export class Logger implements ILogRequestError {
 

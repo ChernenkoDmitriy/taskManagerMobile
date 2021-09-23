@@ -1,7 +1,9 @@
 import { Easing, timing } from "react-native-reanimated";
+import { IConnectSocketUseCase } from "../../common/useCases/connectSocketUseCase/ConnectSocketUseCase";
 import { IReadLocalizationUseCase } from "../useCases/ReadLocalizationUseCase";
 import { IReadNotesUseCase } from "../useCases/ReadNotesUseCase";
 import { IReadThemeUseCase } from "../useCases/ReadThemeUseCase";
+import { IReadUserUseCase } from "../useCases/ReadUserFormStoreUseCase/ReadUserFormStoreUseCase";
 import { ILaunchAppState } from "./LaunchAppState";
 
 export interface ILaunchAppController {
@@ -13,15 +15,21 @@ export class LaunchAppController implements ILaunchAppController {
         private launchAppState: ILaunchAppState,
         private readLocalizationUseCase: IReadLocalizationUseCase,
         private readThemeUseCase: IReadThemeUseCase,
-        private readNotesUseCase: IReadNotesUseCase
+        private readNotesUseCase: IReadNotesUseCase,
+        private readUserUseCase: IReadUserUseCase,
+        private connectSocketUseCase: IConnectSocketUseCase,
     ) { }
 
     launchAppData = async () => {
         try {
             this.animatedOpacity();
-            await this.readLocalizationUseCase.read();
-            await this.readThemeUseCase.read();
-            await this.readNotesUseCase.read();
+            await Promise.all([
+                this.readLocalizationUseCase.read(),
+                this.readThemeUseCase.read(),
+                this.readNotesUseCase.read(),
+                this.readUserUseCase.read()
+            ]);
+            this.connectSocketUseCase.connect();
             this.launchAppState.setIsAppLoaded(true);
         } catch (error) {
             console.warn('LaunchAppController -> launchAppState: ', error);

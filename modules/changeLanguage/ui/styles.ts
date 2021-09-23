@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 import { IColors } from '../../../src/colorTheme';
-import { Util } from '../../../src/util/Util';
+import { Utils } from '../../../src/utils/Utils';
 
 export const getStyle = (colors: IColors) => {
     const styles = StyleSheet.create({
@@ -14,7 +14,7 @@ export const getStyle = (colors: IColors) => {
             flexDirection: 'row',
         },
         languageText: {
-            ...Util.text.medium,
+            ...Utils.text.medium,
         },
         iconWrapper: {
             flex: 1,

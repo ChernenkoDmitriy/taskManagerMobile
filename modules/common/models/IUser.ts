@@ -4,7 +4,7 @@ export interface IUser {
     email: string;
     hashPassword: string;
     logo: string;
-    id: number;
+    id: string;
     uid: string;
     token: string;
 }

@@ -1,4 +1,5 @@
 import { Logger } from "../../../libs/logger";
+import { NotificationService } from "../../../libs/notificationService/NotificationServise";
 import { AxiosRequester } from "../../../libs/requester";
 import { AsyncStoreStorage } from "../../../libs/storage";
 import { BaseFactory } from "../../../src/baseFactory/BaseFactory";
@@ -22,7 +23,7 @@ export class RegistrationFactory {
     }
 
     private createPresenter = () => {
-        const { userStore } = BaseFactory.get();
+        const { userStore, localization } = BaseFactory.get();
         const errorStore = new MobXRepository<{ isError: boolean; message: string }>();
         const isLoadingStore = new MobXRepository<boolean>();
         const isDisabledStore = new MobXRepository<boolean>();
@@ -34,13 +35,14 @@ export class RegistrationFactory {
         const config = new Config();
         const logger = new Logger();
         const storage = new AsyncStoreStorage();
+        const notificationService = new NotificationService(config);
         const userPersistence = new UserPersistence(storage, userStore, config);
         const signUpRequester = new SignUpRequester(requester, config, emailStore, passwordStore, nameStore, errorStore, logger);
 
-        const registerUseCase = new RegisterUseCase(signUpRequester, userPersistence);
+        const registerUseCase = new RegisterUseCase(signUpRequester, userPersistence, notificationService, localization);
 
         const state = new RegistrationState(errorStore, isLoadingStore, isDisabledStore, emailStore, nameStore, passwordStore);
-        const controller = new RegistrationController(state, registerUseCase,);
+        const controller = new RegistrationController(state, registerUseCase, config.REGEX, localization,);
 
         return { controller, state };
     }

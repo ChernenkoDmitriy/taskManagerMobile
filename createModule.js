@@ -10,6 +10,7 @@ async function createFolders() {
     await fs.mkdir(PATH + MODULE_NAME + "/presenter", () => { });
     await fs.mkdir(PATH + MODULE_NAME + "/ui", () => { });
     await fs.mkdir(PATH + MODULE_NAME + "/useCases", () => { });
+    await fs.mkdir(PATH + MODULE_NAME + "/useCases/_ports", () => { });
     await fs.mkdir(PATH + MODULE_NAME + "/api", () => { });
 }
 
@@ -77,7 +78,7 @@ async function createPresenterFiles() {
     const controller = `import { I${MODULE_NAME_CLASS}State } from "./${MODULE_NAME_CLASS}State";
 ${imports}
 export interface I${MODULE_NAME_CLASS}Controller {
-
+    onUnmounted: () => void;
 }
 
 export class ${MODULE_NAME_CLASS}Controller implements I${MODULE_NAME_CLASS}Controller {
@@ -85,6 +86,10 @@ export class ${MODULE_NAME_CLASS}Controller implements I${MODULE_NAME_CLASS}Cont
         private state: I${MODULE_NAME_CLASS}State,
         ${useCases}
     ) { }
+
+    onUnmounted = () => {
+        this.state.setDefaultState();
+    }
 
 }
 `;
@@ -102,13 +107,17 @@ export interface I${MODULE_NAME_CLASS}Presenter {
     const state = `import { IRepository } from "../../common/repository/IRepository";
 
 export interface I${MODULE_NAME_CLASS}State {
-
+    setDefaultState: () => void;
 }
 
 export class ${MODULE_NAME_CLASS}State implements I${MODULE_NAME_CLASS}State {
     constructor(
 
     ) { }
+
+    setDefaultState = () => {
+        
+    }
 
 }
 `;

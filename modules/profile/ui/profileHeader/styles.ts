@@ -1,6 +1,5 @@
 import { StyleSheet } from 'react-native';
 import { IColors } from '../../../../src/colorTheme';
-import { Util } from '../../../../src/util/Util';
 
 export const getStyle = (colors: IColors) => {
     return StyleSheet.create({
@@ -29,17 +28,10 @@ export const getStyle = (colors: IColors) => {
             lineHeight: 20,
             marginTop: 3,
         },
-        buttonLogout: {
-            minWidth: 50,
-            height: 50,
+        buttonWrapper: {
+            maxWidth: 100,
             justifyContent: 'center',
             alignItems: 'center',
-        },
-        textButtonSignIn: {
-            ...Util.text.medium,
-            fontFamily: 'Roboto-Bold',
-            color: colors.accentColorLight,
-            marginRight: 15,
         },
     });
 };

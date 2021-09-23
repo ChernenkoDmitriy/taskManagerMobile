@@ -1,4 +1,4 @@
-import React, { FC, useMemo } from 'react';
+import React, { FC, useCallback, useMemo } from 'react';
 import { View } from 'react-native';
 import { IStackNavigation } from '../../../src/navigation/INavigation/IStackNavigation';
 import { getStyle } from './styles';
@@ -16,13 +16,14 @@ interface Props {
     profilePresenter: IProfilePresenter;
 }
 
-export const ProfileView: FC<Props> = ({ navigation, colors, t }) => {
+export const ProfileView: FC<Props> = ({ navigation, colors, t, profilePresenter: { state, controller } }) => {
     const styles = useMemo(() => getStyle(colors), [colors]);
+    const goToLogin = useCallback(() => { navigation.navigate('AuthorizationScreen') }, []);
 
     return (
         <View style={styles.container}>
-            <ToolBarProfile closeModal={navigation.goBack} title={t('profile')} colors={colors} />
-            <ProfileHeader colors={colors} name={''} email={''} phone={''} logout={() => { }} t={t} navigation={navigation} />
+            <ToolBarProfile title={t('profile')} colors={colors} />
+            <ProfileHeader colors={colors} user={state.user} logout={() => { }} t={t} goToLogin={goToLogin} />
             <ProfileViewItem icon={<LanguageIcon color={colors.accentColorLight} />} title={t('language')} colors={colors} onPress={() => { navigation.navigate('ChangeLanguageScreen') }} testID={'ProfileView'} />
         </View>
     )

@@ -35,8 +35,8 @@ export class SignUpRequester implements ISignUp {
 
     private processingResponse = (response: IResponse, email: string, password: string, name: string) => {
         let result = null;
-        if (response?.status === 'ok') {
-            result = response.data;
+        if (response?.data?.status === 'ok') {
+            result = response.data.data.user;
         } else if (Array.isArray(response?.invalidFields) && response.invalidFields.length) {
             response.invalidFields.forEach(item => {
                 // @ts-ignore
@@ -49,7 +49,7 @@ export class SignUpRequester implements ISignUp {
             this.logger.logRequestError(this.links.LINKS.REGISTRATION, { email, password, name }, response?.error);
             this.errorStore.save({ isError: true, message: response?.messageKey || '' });
         }
-        return null;
+        return result;
     }
 
 }

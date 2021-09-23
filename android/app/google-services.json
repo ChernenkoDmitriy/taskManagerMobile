@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "308482097147",
+    "project_id": "task-manager-58a7a",
+    "storage_bucket": "task-manager-58a7a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:308482097147:android:a96baa53c113724327d55e",
+        "android_client_info": {
+          "package_name": "com.iqquest"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "308482097147-h72r7rvpo6r572u8egjc13fl8lhp8m64.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCV4YGdvcdF-4PZ3nZNt0G6-6NHwDGFexE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "308482097147-h72r7rvpo6r572u8egjc13fl8lhp8m64.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "308482097147-9bj003f0u712nek5qld67fqocde8a9vr.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.iqquest"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

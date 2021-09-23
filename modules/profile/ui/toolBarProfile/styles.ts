@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 import { IColors } from '../../../../src/colorTheme';
-import { Util } from '../../../../src/util/Util';
+import { Utils } from '../../../../src/utils/Utils';
 
 export const getStyle = (colors: IColors) => StyleSheet.create({
     container: {
@@ -13,7 +13,7 @@ export const getStyle = (colors: IColors) => StyleSheet.create({
         borderBottomColor: colors.shadow,
     },
     textTitle: {
-        ...Util.text.large,
+        ...Utils.text.large,
         fontFamily: 'Roboto-Bold',
     },
 })

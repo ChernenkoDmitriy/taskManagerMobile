@@ -1,4 +1,4 @@
-import React, { FC, useMemo } from 'react';
+import React, { FC, useCallback, useMemo } from 'react';
 import { View, ScrollView } from 'react-native';
 import { IStackNavigation } from '../../../src/navigation/INavigation/IStackNavigation';
 import { getStyle } from './styles';
@@ -17,17 +17,22 @@ interface Props {
 
 export const RegistrationView: FC<Props> = ({ navigation, colors, t, registrationPresenter: { state, controller } }) => {
     const styles = useMemo(() => getStyle(colors), [colors]);
+    const onRegister = useCallback(() => { controller.onRegister(navigation) }, []);
 
     return (
         <ScrollView style={styles.container} keyboardDismissMode='interactive' keyboardShouldPersistTaps={'handled'} bounces={false}>
             <HeaderRegistration colors={colors} title={t('signUp')} buttonText={t('signIn')} onPress={() => navigation.navigate('AuthorizationScreen')} />
             <View style={styles.inputsContainer}>
-                <CustomTextInput value={state.name.value} onChangeText={controller.onChangeName} placeholder={t('name')} testID='inputNameRegistration' colors={colors} />
-                <CustomTextInput value={state.email.value} onChangeText={controller.onChangeEmail} placeholder={t('email')} testID='inputEmailRegistration' colors={colors} />
-                <CustomTextInput value={state.password.value} onChangeText={controller.onChangePassword} placeholder={t('password')} testID='inputPasswordRegistration' colors={colors} />
+                <CustomTextInput colors={colors} placeholder={t('name')} errorMessage={state.name.errorMessage && t(state.name.errorMessage)} value={state.name.value}
+                    onChangeText={controller.onChangeName} testID='inputNameRegistration' onBlur={controller.onValidateName} />
+                <CustomTextInput colors={colors} placeholder={t('email')} errorMessage={state.email.errorMessage && t(state.email.errorMessage)} value={state.email.value}
+                    onChangeText={controller.onChangeEmail} testID={'inputEmailAuthorization'} onBlur={controller.onValidateEmail} keyboardType='email-address'/>
+                <CustomTextInput colors={colors} placeholder={t('password')} errorMessage={state.password.errorMessage && t(state.password.errorMessage)}
+                    value={state.password.value} onChangeText={controller.onChangePassword} testID={'inputPasswordAuthorization'} onBlur={controller.onValidatePassword} />
             </View>
             <View style={styles.buttonContainer}>
-                <MainButton testID='MainButtonAddRegistrationView' onPress={controller.onRegister} title={t('signUpAction')} colors={colors} disabled={state.isDisabled} inProgress={state.isLoading} />
+                <MainButton testID='MainButtonAddRegistrationView' onPress={onRegister} title={t('signUpAction')} colors={colors}
+                    disabled={state.isDisabled} inProgress={state.isLoading} />
             </View>
         </ScrollView>
     )

@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 import { IColors } from '../../../../src/colorTheme';
-import { Util } from '../../../../src/util/Util';
+import { Utils } from '../../../../src/utils/Utils';
 
 export const getStyle = (colors: IColors) => {
     const styles = StyleSheet.create({
@@ -30,7 +30,7 @@ export const getStyle = (colors: IColors) => {
             alignItems: 'center',
         },
         errorText: {
-            ...Util.text.small,
+            ...Utils.text.small,
             color: colors.error,
             marginTop: 2,
             marginBottom: 10,

@@ -1,5 +1,5 @@
 import { IColorTheme } from "../../../src/colorTheme";
-import { IReadTheme } from "../api/Storage";
+import { IReadThemeFromStorage } from "./_ports/IReadThemeFromStorage";
 
 export interface IReadThemeUseCase {
     read: () => Promise<void>;
@@ -7,7 +7,7 @@ export interface IReadThemeUseCase {
 
 export class ReadThemeUseCase implements IReadThemeUseCase {
     constructor(
-        private storage: IReadTheme,
+        private storage: IReadThemeFromStorage,
         private colorTheme: IColorTheme
     ) { }
 

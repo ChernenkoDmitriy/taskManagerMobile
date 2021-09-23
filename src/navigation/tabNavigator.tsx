@@ -1,21 +1,17 @@
-import React, { FC, useMemo } from 'react';
+import React, { FC } from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import { MainPageScreen } from '../../modules/mainPage/ui';
-import { NoteDetailScreen } from '../../modules/note/ui/detailNote';
-import { EditNoteScreen } from '../../modules/note/ui/editNote';
-import { ChangeLanguageScreen } from '../../modules/changeLanguage/ui';
 import { ProfileScreen } from '../../modules/profile/ui';
-import { AuthorizationScreen } from '../../modules/authorization/ui';
-import { RegistrationScreen } from '../../modules/registration/ui';
 import { observer } from 'mobx-react';
 import { BaseFactory } from '../baseFactory/BaseFactory';
-import { NoteListScreen } from '../../modules/note/ui/noteList';
+import { NoteListScreen } from '../../modules/smartTask/ui/smartTaskList';
 import { ProfileIcon } from '../../assets/icons/tabBar/ProfileIcon';
 import { HomeIcon } from '../../assets/icons/tabBar/HomeIcon';
 import { NoteIcon } from '../../assets/icons/tabBar/NoteIcon';
 import { SmartTaskListScreen } from '../../modules/smartTask/ui/smartTaskList';
 import { TasksIcon } from '../../assets/icons/tabBar/TasksIcon';
+import { RoomsListScreen } from '../../modules/roomsList/ui';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -30,10 +26,10 @@ export const TabNavigator: FC = observer(() => {
                     tabBarIcon: ({ focused }) => <HomeIcon width={20} height={20} color={focused ? colors.accentColorLight : colors.shadow} />,
                     title: t('homeTab'),
                 }} />
-            <Tab.Screen name={'NoteTab'} component={StackNote}
+            <Tab.Screen name={'RoomListTab'} component={StackRoomsList}
                 options={{
                     tabBarIcon: ({ focused }) => <NoteIcon width={20} height={20} color={focused ? colors.accentColorLight : colors.shadow} />,
-                    title: t('noteTab'),
+                    title: t('roomListTab'),
                 }} />
             <Tab.Screen name={'SmartTaskTab'} component={StackSmartTask}
                 options={{
@@ -74,13 +70,13 @@ export const StackSmartTask: FC = () => {
     );
 }
 
-// export const StackGroup: FC = () => {
-//     return (
-//         <Stack.Navigator initialRouteName="MoreScreen" >
-//             <Stack.Screen name="MoreScreen" component={MoreScreen} options={{ headerShown: false }} />
-//         </Stack.Navigator >
-//     );
-// }
+export const StackRoomsList: FC = () => {
+    return (
+        <Stack.Navigator initialRouteName="RoomsListScreen" >
+            <Stack.Screen name="RoomsListScreen" component={RoomsListScreen} options={{ headerShown: false }} />
+        </Stack.Navigator >
+    );
+}
 
 const StackProfile: FC = () => {
     return (

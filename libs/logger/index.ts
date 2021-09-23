@@ -1,2 +1,2 @@
 export * from './Logger';
-export * from './ILogger/LogRequestError';
+export * from './ILogger/ILogRequestError';

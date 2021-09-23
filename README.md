@@ -54,3 +54,8 @@ link https://github.com/facebook/react-native/issues/30922
 
 1) Add  **useNativeDriver:true** to package ***react-native-actionsheet***
 path **eact-native-actionsheet -> lib -> ActionSheetCustom** : line 68 and 76
+
+
+# Other #
+
+ - find config - enter in terminal ```/sbin/ifconfig```

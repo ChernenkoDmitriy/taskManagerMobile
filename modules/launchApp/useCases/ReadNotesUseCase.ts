@@ -1,4 +1,4 @@
-import { INote } from "../../common/models/INote";
+import { INote } from "../../common/models/ISmartTask";
 import { IRepository } from "../../common/repository/IRepository";
 import { IReadNotesTasksRooms } from "../api/Storage";
 

@@ -1,3 +1,4 @@
+import { BaseFactory } from "../../../src/baseFactory/BaseFactory";
 import { MobXRepository } from "../../common/repository/MobXRepository";
 import { IProfilePresenter } from "../presenter/IProfilePresenter";
 import { ProfileController } from "../presenter/ProfileController";
@@ -14,7 +15,9 @@ export class ProfileFactory {
     }
 
     private createPresenter = () => {
-        const state = new ProfileState();
+        const { userStore } = BaseFactory.get();
+        
+        const state = new ProfileState(userStore);
         const controller = new ProfileController(state,);
 
         return { controller, state };

@@ -1,3 +1,3 @@
 export interface ISocket {
-    connect: (uid: string, token: string) => void;
-} 
+    connect: (url: string, uid: string, token: string) => void;
+}

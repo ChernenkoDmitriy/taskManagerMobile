@@ -33,8 +33,8 @@ export class AuthorizeRequester implements IAuthorize {
 
     private processingResponse = (response: IResponse, email: string, password: string) => {
         let result = null;
-        if (response?.status === 'ok') {
-            result = response.data;
+        if (response?.data?.status === 'ok') {
+            result = response.data.data.user;
         } else if (Array.isArray(response?.invalidFields) && response.invalidFields.length) {
             response.invalidFields.forEach(item => {
                 // @ts-ignore

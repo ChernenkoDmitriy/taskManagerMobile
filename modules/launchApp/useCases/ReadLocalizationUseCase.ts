@@ -1,5 +1,5 @@
 import { ILocalization } from "../../../src/localization/ILocalization";
-import { IReadLocale } from "../api/Storage";
+import { IReadLocale } from "./_ports/IReadLocalizationFromStorage";
 
 export interface IReadLocalizationUseCase {
     read: () => Promise<void>;

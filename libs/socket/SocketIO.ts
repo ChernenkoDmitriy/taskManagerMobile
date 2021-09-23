@@ -2,25 +2,34 @@ import { io, Socket } from 'socket.io-client';
 import { ISocket } from './ISocket/ISocket';
 
 export class SocketIO implements ISocket {
+    private static instance: SocketIO;
     private ws!: Socket;
 
     constructor() {
-
+        if (SocketIO.instance) {
+            return SocketIO.instance;
+        }
+        SocketIO.instance = this;
     };
 
-    connect = (uid: string, token: string) => {
-        const params = `uid=${uid}&token=${token}`;
-        this.ws = io('http://localhost:3000/', { query: params });
+    connect = (url: string, id: string, token: string) => {
+        const params = `id=${id}&token=${token}`;
+        this.ws = io(url, { query: params } as any);
         this.ws?.connect();
 
         this.ws.on('disconnect', function () {
             console.log('client socketio disconnect!')
         });
 
-        this.ws.on('update room', function (data: any) {
-            console.log('client socketio disconnect!', data)
+        this.ws.on('create_room', function (data: any) {
+            console.log('client socketio create_room!', data)
         });
         // this.ws?.emit('chat', { test: 'test' })
-    };
+    }
 
-};
+    send = (event: string, data: any) => {
+        console.log(event, data)
+        this.ws?.emit(event, data)
+    }
+
+}

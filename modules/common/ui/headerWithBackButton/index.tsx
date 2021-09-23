@@ -10,22 +10,25 @@ interface Props {
     navigation: IStackNavigation;
     colors: IColors;
     rightComponent?: React.ReactNode;
+    isBackAvailable?: boolean;
 }
 
-export const HeaderWithBackButton: FC<Props> = ({ navigation, colors, rightComponent, title }) => {
+export const HeaderWithBackButton: FC<Props> = ({ navigation, colors, rightComponent, title, isBackAvailable = true }) => {
     const styles = useMemo(() => getStyle(colors), [colors]);
 
     return (
         <View style={styles.container}>
-            <Pressable
-                style={({ pressed }) => [styles.buttonBack, { opacity: pressed ? 0.5 : 1 }]}
-                onPress={navigation.goBack}
-            >
-                <ArrowBackIcon />
-            </Pressable>
-            {title ? <View style={styles.titleContainer}>
-                <Text style={styles.title} numberOfLines={1}>{title}</Text>
-            </View> : null}
+            <View style={styles.contentWrapper}>
+                {isBackAvailable && <Pressable
+                    style={({ pressed }) => [styles.buttonBack, { opacity: pressed ? 0.5 : 1 }]}
+                    onPress={navigation.goBack}
+                >
+                    <ArrowBackIcon />
+                </Pressable>}
+                {!!title && <View style={styles.titleContainer}>
+                    <Text style={styles.title} numberOfLines={1}>{title}</Text>
+                </View>}
+            </View>
             {rightComponent}
         </View>
     )

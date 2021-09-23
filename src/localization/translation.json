@@ -1,5 +1,9 @@
 {
     "ru": {
+        "signOut": "Выйти",
+        "user_already_exist": "Пользователь с указанной почтой уже существует",
+        "user_not_found": "Пользователь не найден",
+        "error": "Ошибка",
         "smartTaskTab": "Smart задачи",
         "noteTab": "Заметки",
         "homeTab": "Главная",
@@ -31,15 +35,24 @@
         "language": "Язык",
         "profile": "Профиль",
         "appName": "Task manager",
-        "editNote": "Редактировать заметку",
-        "createNote": "Создать заметку",
+        "editTask": "Редактировать задачу",
+        "createTask": "Создать задачу",
         "title": "Заголовок",
         "myNotes": "Мои заметки",
         "note": "Заметка",
-        "signUpAction": "Зарегистрироваться"
+        "signUpAction": "Зарегистрироваться",
+        "roomList": "Комнаты",
+        "createRoom": "Создать комнату",
+        "addPeople": "Добавить людей",
+        "activeTasks": "Активные задачи",
+        "members": "Участники"
     },
     "ua": {},
     "en": {
+        "signOut": "Sign out",
+        "user_already_exist": "User with such email already exist",
+        "user_not_found": "User not found",
+        "error": "Error",
         "smartTaskTab": "Smart tasks",
         "noteTab": "Notes",
         "homeTab": "Main",
@@ -70,11 +83,18 @@
         "language": "Language",
         "profile": "Profile",
         "appName": "Task manager",
-        "editNote": "Edit note",
-        "createNote": "Create note",
+        "editTask": "Edit task",
+        "createTask": "Create task",
         "title": "Title",
         "myNotes": "My notes",
         "note": "Note",
-        "signUpAction": "Sign up"
+        "signUpAction": "Sign up",
+        "roomList": "Rooms",
+        "createRoom": "Create room",
+        "addPeople": "Add people",
+        "enter_room_name": "Enter room name",
+        "smartTaskListHeader": "",
+        "activeTasks": "Active tasks",
+        "members": "Members"
     }
 }

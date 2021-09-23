@@ -1,10 +1,16 @@
+import { Logger } from "../../../libs/logger";
+import { AxiosRequester } from "../../../libs/requester";
+import { BaseFactory } from "../../../src/baseFactory/BaseFactory";
+import { Config } from "../../../src/config";
+import { ISmartTask } from "../../common/models/ISmartTask";
+import { MobXRepository } from "../../common/repository/MobXRepository";
+import { SmartTaskHelper } from "../api/smartTaskHelper/SmartTaskHelper";
+import { SmartTaskRequester } from "../api/smartTaskRequester/SmartTaskRequester";
 import { ISmartTaskPresenter } from "../presenter/ISmartTaskPresenter";
 import { SmartTaskController } from "../presenter/SmartTaskController";
 import { SmartTaskState } from "../presenter/SmartTaskState";
-import { CreateTaskUseCase } from "../useCases/CreateTaskUseCase";
-import { DeleteTaskUseCase } from "../useCases/DeleteTaskUseCase";
-import { EditTaskUseCase } from "../useCases/EditTaskUseCase";
-import { UpdateTaskUseCase } from "../useCases/UpdateTaskUseCase";
+import { CreateSmartTaskUseCase } from "../useCases/createNoteUseCase/CreateNoteUseCase";
+import { UpdateSmartTaskUseCase } from "../useCases/updateSmartTaskUseCase/UpdateSmartTaskUseCase";
 
 export class SmartTaskFactory {
     private static presenter: ISmartTaskPresenter;
@@ -17,13 +23,20 @@ export class SmartTaskFactory {
     }
 
     private createPresenter = () => {
-        const createTaskUseCase = new CreateTaskUseCase();
-        const deleteTaskUseCase = new DeleteTaskUseCase();
-        const editTaskUseCase = new EditTaskUseCase();
-        const updateTaskUseCase = new UpdateTaskUseCase();
+        const { chosenRoomStore, roomSmartTasksStore, chosenSmartTaskStore, userStore } = BaseFactory.get();
+        const isLoadingStore = new MobXRepository<boolean>();
 
-        const state = new SmartTaskState();
-        const controller = new SmartTaskController(state, createTaskUseCase, deleteTaskUseCase, editTaskUseCase, updateTaskUseCase,);
+        const smartTaskHelper = new SmartTaskHelper(roomSmartTasksStore, chosenSmartTaskStore);
+        const requester = new AxiosRequester();
+        const config = new Config();
+        const logger = new Logger();
+        const smartTaskRequester = new SmartTaskRequester(requester, config, logger);
+
+        const createSmartTaskUseCase = new CreateSmartTaskUseCase(smartTaskHelper, smartTaskRequester);
+        const updateSmartTaskUseCase = new UpdateSmartTaskUseCase(chosenSmartTaskStore, userStore, chosenRoomStore, smartTaskRequester, smartTaskHelper);
+
+        const state = new SmartTaskState(chosenSmartTaskStore, isLoadingStore);
+        const controller = new SmartTaskController(state, smartTaskHelper, chosenRoomStore, createSmartTaskUseCase, updateSmartTaskUseCase);
 
         return { controller, state };
     }

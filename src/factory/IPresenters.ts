@@ -1,10 +1,11 @@
 export type IPresenters =
+    'roomPresenter' |
+    'createRoomPresenter' |
+    'roomsListPresenter' |
     'smartTaskPresenter' |
     'registrationPresenter' |
     'authorizationPresenter' |
     'changeLanguagePresenter' |
     'profilePresenter' |
-    'notePresenter' |
-    'mainPagePresenter' |
     'launchAppPresenter' |
     'basePresenter';

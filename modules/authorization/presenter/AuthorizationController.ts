@@ -1,11 +1,14 @@
+import { Alert, Keyboard } from "react-native";
 import { IAuthorizationState } from "./AuthorizationState";
-import { IAuthorizeUseCase } from "../useCases/AuthorizeUseCase";
+import { IAuthorizeUseCase } from "../useCases/authorizeUseCase/AuthorizeUseCase";
 import { IRegex } from "../../../src/config/IConfig/IRegex";
+import { ILocalization } from "../../../src/localization/ILocalization";
+import { IStackNavigation } from "../../../src/navigation/INavigation/IStackNavigation";
 
 export interface IAuthorizationController {
     onChangeEmail: (data: string) => void;
     onChangePassword: (data: string) => void;
-    onAuthorize: () => Promise<void>;
+    onAuthorize: (navigation: IStackNavigation) => Promise<void>;
     onValidateEmail: () => void;
     onValidatePassword: () => void;
     onUnmounted: () => void;
@@ -16,6 +19,7 @@ export class AuthorizationController implements IAuthorizationController {
         private state: IAuthorizationState,
         private authorizeUseCase: IAuthorizeUseCase,
         private regex: IRegex,
+        private localization: ILocalization,
     ) { }
 
     onValidateEmail = () => {
@@ -44,15 +48,20 @@ export class AuthorizationController implements IAuthorizationController {
         this.validateInputs();
     }
 
-    onAuthorize = async () => {
+    onAuthorize = async (navigation: IStackNavigation) => {
         this.state.setIsLoading(true);
-        // await this.authorizeUseCase.authorize(this.authorizationState.email, this.authorizationState.password);
-        // this.processingAuthorize();
+        Keyboard.dismiss();
+        await this.authorizeUseCase.authorize(this.state.email.value, this.state.password.value);
+        if (this.state.error.isError) {
+            Alert.alert(this.localization.t('error'), this.localization.t(this.state.error.message));
+        } else {
+            navigation.navigate('HomeTab');
+        }
         this.state.setIsLoading(false);
     }
 
     private validateInputs = () => {
-        const isDisabled = !( this.regex.emailRegExp.test(this.state.email.value) && this.regex.passwordRegExp.test(this.state.password.value));
+        const isDisabled = !(this.regex.emailRegExp.test(this.state.email.value) && this.regex.passwordRegExp.test(this.state.password.value));
         this.state.setIsAuthorizationDisable(isDisabled);
     }
 
