@@ -17,7 +17,7 @@ export class SmartTaskHelper implements ISmartTaskHelper {
         SmartTaskHelper.instance = this;
     }
 
-    saveChosenTaskTask = () => {
+    saveChosenTaskTask = (smartTask?: ISmartTask) => {
         let updatedNotes: ISmartTask[] = [];
         const notes = toJS(this.notesStore.data as ISmartTask[]);
         if (this.chosenSmartTaskStore.data?.id) {
@@ -28,11 +28,9 @@ export class SmartTaskHelper implements ISmartTaskHelper {
                 return note;
             }) ?? [];
         } else {
-            const note = toJS(this.chosenSmartTaskStore.data as ISmartTask);
-            updatedNotes = [note, ...notes];
+            updatedNotes = [smartTask as ISmartTask, ...notes];
         }
         this.notesStore.save(updatedNotes);
-
     }
 
     createPoint = (): TSmartTaskPoint => {

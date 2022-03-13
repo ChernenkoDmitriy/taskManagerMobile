@@ -4,7 +4,8 @@ import { IColors } from '../../../../src/colorTheme';
 export const getStyle = (colors: IColors) => {
     const styles = StyleSheet.create({
         buttonContainer: {
-            marginHorizontal: 10,
+            width: 40,
+            marginLeft: 20,
             height: '100%',
             alignItems: 'center',
             justifyContent: 'center',

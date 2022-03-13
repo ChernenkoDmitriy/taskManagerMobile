@@ -1,4 +1,4 @@
-import React, { FC, useMemo } from 'react';
+import React, { FC, useMemo, memo } from 'react';
 import { Text, Pressable, ActivityIndicator, View } from 'react-native';
 import { IColors } from '../../../../src/colorTheme';
 import { getStyle } from './styles';
@@ -12,7 +12,7 @@ interface Props {
     inProgress?: boolean;
 }
 
-export const MainButton: FC<Props> = ({ onPress = () => { }, title = '', testID, colors, disabled = false, inProgress = false }) => {
+export const MainButton: FC<Props> = memo(({ onPress = () => { }, title = '', testID, colors, disabled = false, inProgress = false }) => {
     const styles = useMemo(() => getStyle(colors), [colors]);
 
     return (
@@ -27,4 +27,4 @@ export const MainButton: FC<Props> = ({ onPress = () => { }, title = '', testID,
             {inProgress ? <View style={styles.absoluteSheet}><ActivityIndicator color={colors.accentColorLight} size='large' /></View> : null}
         </Pressable>
     );
-}
+})

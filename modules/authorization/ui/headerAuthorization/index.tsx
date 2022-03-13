@@ -1,4 +1,4 @@
-import React, { FC, useMemo } from 'react';
+import React, { FC, useMemo, memo } from 'react';
 import { Text, View, Pressable } from 'react-native';
 import { ArrowIosLeft } from '../../../../assets/icons/arrowIos/ArrowIosLeft';
 import { ArrowIosRight } from '../../../../assets/icons/arrowIos/ArrowIosRight';
@@ -12,19 +12,19 @@ interface Props {
     colors: IColors;
 }
 
-export const HeaderAuthorization: FC<Props> = ({ t, navigation, colors }) => {
+export const HeaderAuthorization: FC<Props> = memo(({ t, navigation, colors }) => {
     const styles = useMemo(() => getStyle(colors), [colors]);
 
     return (
         <View style={styles.container}>
-            <Pressable style={({ pressed }) => [styles.buttonLeft, { opacity: pressed ? 0.5 : 1 }]} onPress={navigation.goBack} testID={'buttonHeaderAuthorization'}>
+            {/* <Pressable style={({ pressed }) => [styles.buttonLeft, { opacity: pressed ? 0.5 : 1 }]} onPress={navigation.goBack} testID={'buttonHeaderAuthorization'}>
                 <ArrowIosLeft />
                 <Text style={styles.buttonTextLeft} testID={'buttonTextHeaderAuthorization'} numberOfLines={1}>{t('back')}</Text>
-            </Pressable>
+            </Pressable> */}
             <Pressable style={({ pressed }) => [styles.buttonRight, { opacity: pressed ? 0.5 : 1 }]} onPress={() => navigation.navigate('RegistrationScreen')} testID={'buttonHeaderAuthorization'}>
                 <Text style={styles.buttonTextRight} testID={'buttonTextHeaderAuthorization'} numberOfLines={1}>{t('signUp')}</Text>
                 <ArrowIosRight />
             </Pressable>
         </View>
     );
-}
+});

@@ -3,6 +3,7 @@ import { IRequester } from ".";
 
 export class AxiosRequester implements IRequester {
     private static instance: AxiosRequester;
+
     constructor() {
         if (AxiosRequester.instance) {
             return AxiosRequester.instance;
@@ -32,15 +33,15 @@ export class AxiosRequester implements IRequester {
                 console.log(error.response.data);
                 console.log(error.response.status);
                 console.log(error.response.headers);
-              } else if (error.request) {
+            } else if (error.request) {
                 // The request was made but no response was received
                 // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
                 // http.ClientRequest in node.js
                 console.log(error.request);
-              } else {
+            } else {
                 // Something happened in setting up the request that triggered an Error
                 console.log('Error', error.message);
-              }
+            }
             console.warn('AxiosRequester -> post: ', error.message);
             return error?.response?.data || error;
         }

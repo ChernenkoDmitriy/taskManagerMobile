@@ -21,15 +21,16 @@ export const AuthorizationView: FC<Props> = ({ navigation, colors, t, authorizat
     const styles = useMemo(() => getStyle(colors), [colors]);
     useEffect(() => { return controller.onUnmounted }, []);
     const onAuthorize = useCallback(() => { controller.onAuthorize(navigation) }, []);
+    const onGoToRestorePasswordScreen = useCallback(() => { navigation.navigate('RestorePasswordScreen'); }, []);
 
     return (
         <ScrollView style={styles.container} keyboardDismissMode='interactive' keyboardShouldPersistTaps={'handled'} bounces={false}>
             <HeaderAuthorization colors={colors} navigation={navigation} t={t} />
             <CustomTextInput colors={colors} placeholder={t('email')} errorMessage={state.email.errorMessage && t(state.email.errorMessage)} value={state.email.value}
-                onChangeText={controller.onChangeEmail} testID={'inputEmailAuthorization'} onBlur={controller.onValidateEmail} keyboardType='email-address'/>
+                onChangeText={controller.onChangeEmail} testID={'inputEmailAuthorization'} onBlur={controller.onValidateEmail} keyboardType='email-address' />
             <CustomTextInput colors={colors} placeholder={t('password')} errorMessage={state.password.errorMessage && t(state.password.errorMessage)} value={state.password.value}
                 onChangeText={controller.onChangePassword} testID={'inputPasswordAuthorization'} onBlur={controller.onValidatePassword} />
-            <RestorePasswordButton colors={colors} onPress={() => navigation.navigate('RestorePasswordScreen')} title={t('forgotPass')} />
+            <RestorePasswordButton colors={colors} onPress={onGoToRestorePasswordScreen} title={t('forgotPass')} />
             <View style={styles.buttonWrapper}>
                 <MainButton testID='buttonAuthorization' onPress={onAuthorize} title={t('enter')} colors={colors}
                     disabled={state.isAuthorizationDisabled} inProgress={state.isLoading} />

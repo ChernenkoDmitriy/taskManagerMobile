@@ -13,8 +13,8 @@ export class CreateSmartTaskUseCase implements ICreateSmartTaskUseCase {
     ) { }
 
     createSmartTask = async (smartTask: ISmartTask, roomId: string) => {
-        await this.smartTaskRequester.createSmartTask(smartTask, roomId);
-        this.smartTaskHelper.saveChosenTaskTask();
+        const smartTaskResponse = await this.smartTaskRequester.createSmartTask(smartTask, roomId);
+        this.smartTaskHelper.saveChosenTaskTask(smartTaskResponse as ISmartTask);
     }
 
 }

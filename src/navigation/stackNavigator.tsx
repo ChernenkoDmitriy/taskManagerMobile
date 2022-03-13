@@ -20,7 +20,8 @@ export const StackNavigator: FC = observer(() => {
         <Stack.Navigator initialRouteName='LaunchAppScreen'>
             {isAppLoadedStore.data
                 ?
-                userStore.data ? <>
+                userStore.data ? 
+                <>
                     <Stack.Screen name='RoomsListScreen' component={RoomsListScreen} options={{ headerShown: false }} />
                     <Stack.Screen name='RoomScreen' component={RoomScreen} options={{ headerShown: false }} />
                     <Stack.Screen name='SmartTaskScreen' component={SmartTaskScreen} options={{ headerShown: false }} />

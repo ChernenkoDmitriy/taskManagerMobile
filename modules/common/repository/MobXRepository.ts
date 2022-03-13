@@ -1,4 +1,4 @@
-import { action, makeAutoObservable, toJS } from 'mobx';
+import { action, makeAutoObservable, onBecomeObserved, onBecomeUnobserved, toJS } from 'mobx';
 import { IRepository } from './IRepository';
 
 export class MobXRepository<T> implements IRepository<T> {

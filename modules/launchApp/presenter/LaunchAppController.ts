@@ -1,4 +1,4 @@
-import { Easing, timing } from "react-native-reanimated";
+import { EasingNode, timing } from "react-native-reanimated";
 import { IConnectSocketUseCase } from "../../common/useCases/connectSocketUseCase/ConnectSocketUseCase";
 import { IReadLocalizationUseCase } from "../useCases/ReadLocalizationUseCase";
 import { IReadNotesUseCase } from "../useCases/ReadNotesUseCase";
@@ -37,7 +37,7 @@ export class LaunchAppController implements ILaunchAppController {
     }
 
     private animatedOpacity = () => {
-        timing(this.launchAppState.opacityLogo, { toValue: 2, duration: 700, easing: Easing.linear })
+        timing(this.launchAppState.opacityLogo, { toValue: 2, duration: 700, easing: EasingNode.linear })
             .start(({ finished }) => {
                 if (finished) {
                     this.launchAppState.setIsAnimationFinished(true);

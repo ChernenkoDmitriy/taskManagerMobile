@@ -24,7 +24,8 @@ export class Config implements IConfig {
     }
 
     get LINKS() {
-        return this._links;
+        return LINKS_MOCK;
+        // return this._links;
     }
 
     get STORAGE_SERVICES() {
@@ -42,12 +43,26 @@ export class Config implements IConfig {
 
 }
 
-    // "LINKS": {
-    //     "REGISTER_FCM_TOKEN": "http://192.168.10.26:3000/register-fcm-token",
-    //     "UPDATE_FCM_TOKEN": "http://192.168.10.26:3000/update-fcm-token",
-    //     "DELETE_FCM_TOKEN": "http://192.168.10.26:3000/delete-fcm-token",
-    //     "SOCKET": "http://192.168.10.26:3000/",
-    //     "AUTHORIZATION": "http://192.168.10.26:3000/authorization",
-    //     "REGISTRATION": "http://192.168.10.26:3000/registration",
-    //     "FIND_USERS": "http://192.168.10.26:3000/find-users"
-    // },
+const LINKS_MOCK = {
+    // "REGISTER_FCM_TOKEN": "http://192.168.10.26:3000/register-fcm-token",
+    // "UPDATE_FCM_TOKEN": "http://192.168.10.26:3000/update-fcm-token",
+    // "DELETE_FCM_TOKEN": "http://192.168.10.26:3000/delete-fcm-token",
+    // "SOCKET": "http://192.168.10.26:3000/",
+    // "AUTHORIZATION": "http://192.168.10.26:3000/authorization",
+    // "REGISTRATION": "http://192.168.10.26:3000/registration",
+    // "FIND_USERS": "http://192.168.10.26:3000/find-users",
+
+    "REGISTER_FCM_TOKEN": "http://localhost:3000/register-fcm-token",
+    "UPDATE_FCM_TOKEN": "http://localhost:3000/update-fcm-token",
+    "DELETE_FCM_TOKEN": "http://localhost:3000/delete-fcm-token",
+    "SOCKET": "http://localhost:3000/",
+    "AUTHORIZATION": "http://localhost:3000/authorization",
+    "REGISTRATION": "http://localhost:3000/registration",
+    "FIND_USERS": "http://localhost:3000/find-users",
+    "CREATE_ROOM": "http://localhost:3000/create-room",
+    "GET_USER_ROOMS": "http://localhost:3000/get-user-rooms",
+    "CREATE_NOTE": "http://localhost:3000/create-note",
+    "DELETE_NOTE": "http://localhost:3000/delete-note",
+    "GET_NOTES": "http://localhost:3000/get-notes",
+    "UPDATE_NOTES": "http://localhost:3000/update-note"
+};

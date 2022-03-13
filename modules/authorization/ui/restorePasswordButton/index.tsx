@@ -1,4 +1,4 @@
-import React, { FC, useMemo } from 'react';
+import React, { FC, useMemo, memo } from 'react';
 import { Pressable, Text, View } from 'react-native';
 import { IColors } from '../../../../src/colorTheme';
 import { getStyle } from './styles';
@@ -9,8 +9,9 @@ interface Props {
     colors: IColors;
 }
 
-export const RestorePasswordButton: FC<Props> = ({ title, onPress, colors }) => {
+export const RestorePasswordButton: FC<Props> = memo(({ title, onPress, colors }) => {
     const styles = useMemo(() => getStyle(colors), [colors]);
+    console.log('RestorePasswordButton')
 
     return (
         <View style={styles.container}>
@@ -24,4 +25,4 @@ export const RestorePasswordButton: FC<Props> = ({ title, onPress, colors }) => 
             </Pressable>
         </View>
     );
-}
+})

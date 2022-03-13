@@ -1,6 +1,6 @@
-import { TSmartTaskPoint } from "../../../common/models/ISmartTask";
+import { ISmartTask, TSmartTaskPoint } from "../../../common/models/ISmartTask";
 
 export interface ISmartTaskHelper {
     createPoint: () => TSmartTaskPoint;
-    saveChosenTaskTask: () => void;
+    saveChosenTaskTask: (smartTask?: ISmartTask) => void;
 }

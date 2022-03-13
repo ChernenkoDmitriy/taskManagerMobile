@@ -1,4 +1,4 @@
-import React, { FC, useMemo, useState } from "react";
+import React, { FC, useMemo, useState, memo } from "react";
 import { TextInput, View, Text } from "react-native";
 import { IColors } from "../../../../src/colorTheme";
 import { getStyle } from "./styles";
@@ -16,7 +16,7 @@ interface Props {
     onBlur?: () => void;
 };
 
-export const CustomTextInput: FC<Props> = ({ value, errorMessage, onChangeText, placeholder, icon, testID, colors, keyboardType, onFocus, onBlur }) => {
+export const CustomTextInput: FC<Props> = memo(({ value, errorMessage, onChangeText, placeholder, icon, testID, colors, keyboardType, onFocus, onBlur }) => {
     const styles = useMemo(() => getStyle(colors), [colors]);
     const [isFocused, setIsFocused] = useState(false);
 
@@ -49,4 +49,4 @@ export const CustomTextInput: FC<Props> = ({ value, errorMessage, onChangeText, 
             {errorMessage ? <Text style={styles.errorText}>{errorMessage}</Text> : null}
         </View>
     );
-};
+});
