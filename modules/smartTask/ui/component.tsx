@@ -34,10 +34,10 @@ export const SmartTaskView: FC<Props> = ({ navigation, colors, t, smartTaskPrese
         setDatePickerVisibility(false);
     };
 
-    const handleConfirm = (date) => {
-        console.warn("A date has been picked: ", date);
-        hideDatePicker();
-    };
+    // const handleConfirm = (date) => {
+    //     console.warn("A date has been picked: ", date);
+    //     hideDatePicker();
+    // };
 
 
     // const handleConfirm = (date) => {
@@ -56,14 +56,14 @@ export const SmartTaskView: FC<Props> = ({ navigation, colors, t, smartTaskPrese
             <HeaderUpdateSmartTask colors={colors} navigation={navigation} onSave={onSave} />
             <ScrollView style={styles.scrollContainer}>
                 <TaskTitle t={t} colors={colors} onChangeTitle={controller.onChangeTitle} title={state.chosenSmartTask.title} />
-                <Button title={'showDatePicker'} onPress={showDatePicker} />
+                {/* <Button title={'showDatePicker'} onPress={showDatePicker} />
                 <DateTimePickerModal
                     minimumDate={new Date()}
                     isVisible={isDatePickerVisible}
                     mode="date"
                     onConfirm={handleConfirm}
                     onCancel={hideDatePicker}
-                />
+                /> */}
                 <TaskContent t={t} noteContent={state.chosenSmartTask.content} onChangeContent={controller.onChangeContent} colors={colors} />
                 <TaskPoints t={t} colors={colors} points={state.chosenSmartTask.points} onDeletePoint={controller.onDeletePoint}
                     onChangePoint={controller.onChangePoint} onChangePointProgress={controller.onChangePointProgress} />

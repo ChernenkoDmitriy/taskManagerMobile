@@ -1,5 +1,8 @@
 export type IColors = {
-    error:string;
+    textAccentButton: string;
+    modalBackground: string;
+    icon: string;
+    error: string;
     low: string;
     medium: string;
     high: string;

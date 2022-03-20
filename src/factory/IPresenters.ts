@@ -1,4 +1,6 @@
 export type IPresenters =
+    'roomDetailsPresenter' |
+    'settingsPresenter' |
     'roomPresenter' |
     'createRoomPresenter' |
     'roomsListPresenter' |

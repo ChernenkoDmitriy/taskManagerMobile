@@ -1,15 +1,18 @@
 {
     "light": {
-        "error":"#FF5010",
+        "buttonText": "#FFFFFF",
+        "regularText": "#131313",
+        "titleText": "#000000",
+        "textAccentButton": "#155249",
+        "modalBackground": "#00000080",
+        "icon": "#000000",
+        "error": "#FF5010",
         "low": "#2ECC71",
         "medium": "#F7DC6F",
         "high": "#E74C3C",
         "shadow": "#bababa",
         "background": "#FFFFFF",
         "card": "#EAEDED",
-        "buttonText": "#FFFFFF",
-        "regularText": "#131313",
-        "titleText": "#000000",
         "inactiveText": "#979797",
         "accentColorLight": "#3C7BEA",
         "accentColorDark": "#0F264B"

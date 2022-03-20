@@ -1,5 +1,8 @@
 {
     "ru": {
+        "doYouWannaLeaveGroup": "Вы хотите покинуть группу?",
+        "ok": "Ок",
+        "leaveGroup": "Покинуть группу",
         "signOut": "Выйти",
         "user_already_exist": "Пользователь с указанной почтой уже существует",
         "user_not_found": "Пользователь не найден",
@@ -49,6 +52,9 @@
     },
     "ua": {},
     "en": {
+        "doYouWannaLeaveGroup": "Do you want to leave the group?",
+        "ok": "Ok",
+        "leaveGroup": "Leave group",
         "signOut": "Sign out",
         "user_already_exist": "User with such email already exist",
         "user_not_found": "User not found",

@@ -79,6 +79,7 @@ export class SmartTaskController implements ISmartTaskController {
     }
 
     onSave = async (navigation: IStackNavigation) => {
+        navigation.canGoBack() && navigation.goBack();
         const task = this.state.chosenSmartTask;
         const roomId = this.chosenRoomStore.data?.id;
         if (task.id) {
@@ -86,7 +87,6 @@ export class SmartTaskController implements ISmartTaskController {
         } else {
             await this.createSmartTaskUseCase.createSmartTask(task, roomId as string);
         }
-        navigation.goBack();
     }
 
     onUnmounted = () => {

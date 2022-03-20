@@ -5,6 +5,7 @@ import { StackNavigator } from './stackNavigator';
 import { observer } from 'mobx-react';
 import RNBootSplash from "react-native-bootsplash";
 import { Utils } from '../utils/Utils';
+import { SettingsModal } from '../../modules/settings/ui';
 
 export const RootNavigation: FC = observer(() => {
     return (
@@ -13,6 +14,7 @@ export const RootNavigation: FC = observer(() => {
                 <NavigationContainer onReady={RNBootSplash.hide}>
                     <StackNavigator />
                 </NavigationContainer>
+                <SettingsModal />
             </SafeAreaView>
         </KeyboardAvoidingView>
     );

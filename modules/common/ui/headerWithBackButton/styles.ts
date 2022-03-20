@@ -20,12 +20,15 @@ export const getStyle = (colors: IColors) => {
             alignItems: 'center',
         },
         contentWrapper: {
-            flex: 1,
             flexDirection: 'row',
         },
         titleContainer: {
             flex: 1,
             marginLeft: 10,
+            justifyContent: 'center',
+            alignItems: 'flex-start',
+        },
+        titleContainerButton: {
             justifyContent: 'center',
             alignItems: 'flex-start',
         },

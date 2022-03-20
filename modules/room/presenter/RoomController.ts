@@ -6,6 +6,7 @@ import { ISmartTask } from "../../common/models/ISmartTask";
 export interface IRoomController {
     onSetChosenSmartTask: (data: ISmartTask) => void;
     getRoomTasks: () => Promise<void>;
+    onOpenModalRoomDetails: () => void;
     onUnmounted: () => void;
 }
 
@@ -15,6 +16,7 @@ export class RoomController implements IRoomController {
         private editRoomUseCase: IEditRoomUseCase,
         private getRoomTasksUseCase: IGetRoomTasksUseCase,
         private setChosenSmartTask: (data: ISmartTask) => void,
+        public onOpenModalRoomDetails: () => void,
     ) { }
 
     onSetChosenSmartTask = (data: ISmartTask) => {

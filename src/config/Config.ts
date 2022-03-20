@@ -24,8 +24,8 @@ export class Config implements IConfig {
     }
 
     get LINKS() {
-        return LINKS_MOCK;
-        // return this._links;
+        // return LINKS_MOCK;
+        return this._links;
     }
 
     get STORAGE_SERVICES() {

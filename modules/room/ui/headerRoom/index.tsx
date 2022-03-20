@@ -8,12 +8,13 @@ interface Props {
     title: string;
     colors: IColors;
     navigation: IStackNavigation;
+    onOpenModalRoomDetails: () => void;
 }
 
-export const HeaderRoom: FC<Props> = ({ colors, title, navigation }) => {
+export const HeaderRoom: FC<Props> = ({ colors, title, navigation, onOpenModalRoomDetails }) => {
     const styles = useMemo(() => getStyle(colors), [colors]);
 
     return (
-        <HeaderWithBackButton navigation={navigation} colors={colors} title={title} />
+        <HeaderWithBackButton onPressTittle={onOpenModalRoomDetails} navigation={navigation} colors={colors} title={title} />
     )
 }

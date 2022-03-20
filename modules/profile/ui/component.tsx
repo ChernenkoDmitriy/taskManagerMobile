@@ -1,5 +1,5 @@
 import React, { FC, useCallback, useMemo } from 'react';
-import { View, Platform } from 'react-native';
+import { View } from 'react-native';
 import { IStackNavigation } from '../../../src/navigation/INavigation/IStackNavigation';
 import { getStyle } from './styles';
 import { IColors } from '../../../src/colorTheme';

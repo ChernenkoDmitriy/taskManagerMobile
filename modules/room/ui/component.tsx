@@ -11,6 +11,7 @@ import { useEffect } from 'react';
 import { ListSmartTasks } from './listSmartTasks';
 import { CircleAbsoluteButton } from '../../common/ui/circleAbsoluteButton';
 import { ISmartTask } from '../../common/models/ISmartTask';
+import { RoomDetailsScreen } from '../../roomDetails/ui';
 
 interface Props {
     navigation: IStackNavigation;
@@ -36,12 +37,13 @@ export const RoomView: FC<Props> = ({ navigation, colors, t, roomPresenter: { st
 
     return (
         <View style={styles.container}>
-            <HeaderRoom colors={colors} title={state.chosenRoom.name} navigation={navigation} />
+            <HeaderRoom onOpenModalRoomDetails={controller.onOpenModalRoomDetails} colors={colors} title={state.chosenRoom.name} navigation={navigation} />
             <ListSmartTasks colors={colors} smartTasks={state.roomTasks} onChoseTask={onChoseTask} />
-            {/* <Dashboard colors={colors} goToCreateTask={goToCreateTask} roomTasks={state.roomTasks} /> */}
-            {/* ? 
+            {/* <Dashboard colors={colors} goToCreateTask={goToCreateTask} roomTasks={state.roomTasks} />
+            ? 
                 : <EmptyRoom colors={colors} title={t('createRoom')} onPress={goToCreateRoom} />} */}
             <CircleAbsoluteButton colors={colors} onPress={goToCreateTask} />
+            <RoomDetailsScreen navigation={navigation}/>
         </View>
     )
 }

@@ -9,11 +9,17 @@ import { SmartTaskFactory } from "../../modules/smartTask/factory/SmartTaskFacto
 import { RoomsListFactory } from "../../modules/roomsList/factory/RoomsListFactory";
 import { CreateRoomFactory } from "../../modules/createRoom/factory/CreateRoomFactory";
 import { RoomFactory } from "../../modules/room/factory/RoomFactory";
+import { SettingsFactory } from "../../modules/settings/factory/SettingsFactory";
+import { RoomDetailsFactory } from "../../modules/roomDetails/factory/RoomDetailsFactory";
 
 export class Factory {
 
     static get = (type: IPresenters, ..._args: any) => {
         switch (type) {
+            case 'roomDetailsPresenter':
+                return RoomDetailsFactory.get();
+            case 'settingsPresenter':
+                return SettingsFactory.get();
             case 'roomPresenter':
                 return RoomFactory.get();
             case 'createRoomPresenter':

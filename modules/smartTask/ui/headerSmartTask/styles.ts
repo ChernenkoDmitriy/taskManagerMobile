@@ -6,13 +6,18 @@ export const getStyle = (colors: IColors) => {
         buttonContainer: {
             width: 40,
             marginLeft: 20,
-            height: '100%',
             alignItems: 'center',
             justifyContent: 'center',
         },
         buttonText: {
             color: colors.buttonText,
             fontSize: 18,
+        },
+        rightComponentContainer: {
+            flexDirection: 'row',
+            justifyContent: 'flex-end',
+            alignItems: 'center',
+            flex: 1,
         }
     });
     return styles;
